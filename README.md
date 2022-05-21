@@ -20,5 +20,9 @@ argocd app sync apps
 Deploy the  application with kubectl:
 
 ```bash
-kubectl apply -f application.yaml
+# Create the app of Apps
+kubectl apply -f applications.yaml
+
+# Delete the app of Apps
+kubectl delete -f applications.yaml
 ```
