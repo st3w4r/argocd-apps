@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata: 
   name: guessbook
@@ -13,8 +13,8 @@ spec:
       labels:
         app: guestbook
     spec:
-      image: gcr.io/heptio-images/ks-guestbook-demo:0.2
-      name: guestbook
-      ports:
-      - containerPort: 80 
-
+      containers:
+        image: gcr.io/heptio-images/ks-guestbook-demo:0.2
+        name: guestbook
+        ports:
+        - containerPort: 80
