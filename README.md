@@ -4,13 +4,6 @@ Manage Kubernetes with [Argo CD](https://argo-cd.readthedocs.io/en/stable/)
 
 With argocd CLI
 
-Deploy an application:
-
-```bash
-kubectl apply -f application.yaml`
-```
-
-
 Create an App of Apps with the commands:
 
 ```bash
@@ -21,4 +14,11 @@ argocd app create apps \
 --path apps
 
 argocd app sync apps
+```
+
+
+Deploy the  application with kubectl:
+
+```bash
+kubectl apply -f application.yaml
 ```
