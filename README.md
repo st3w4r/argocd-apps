@@ -51,3 +51,18 @@ Get access to the UI
 - Go to localhost:8080
 - Username `admin`
 
+
+Login if token as expired
+
+```
+sh ../password.sh
+
+argocd login localhost:8080
+
+> admin
+> <password>
+
+argocd cluster list
+```
+
+
