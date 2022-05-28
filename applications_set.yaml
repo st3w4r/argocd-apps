@@ -15,7 +15,7 @@ spec:
         url: https://192.168.0.96:8444
   template:
     metadata:
-      name: '{{cluster}}-demo-four'
+      name: 'demo-four-{{cluster}}'
     spec:
       project: default
       source:
@@ -25,3 +25,7 @@ spec:
       destination:
         server: '{{url}}'
         namespace: demo
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
