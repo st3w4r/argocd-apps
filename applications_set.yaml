@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: demo-four
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - cluster: dev
+        url: https://192.168.0.96:8442
+      - cluster: staging
+        url: https://192.168.0.96:8443
+      - cluster: prod
+        url: https://192.168.0.96:8444
+  template:
+    metadata:
+      name: '{{cluster}}-demo-four'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/st3w4r/argocd-apps.git
+        targetRevision: HEAD
+        path: demo-four
+      destination:
+        server: '{{url}}'
+        namespace: demo
