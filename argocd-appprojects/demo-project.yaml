@@ -6,7 +6,7 @@ metadata:
 spec:
   clusterResourceWhitelist:
   - group: '*'
-    kind: ;*
+    kind: '*'
   destination:
   - namespace: demo
     server: https://kubernetes.default.svc
