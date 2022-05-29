@@ -118,3 +118,22 @@ To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 
 
 Install helm chart
+
+```
+cd argo-cd
+
+helm repo add dandydev https://dandydeveloper.github.io/charts
+
+helm dependency build
+
+cd ..
+
+helm install argocd ./argo-cd --namespace argocd --create-namespace -f values-override.yaml
+```
+
+
+```
+kubectl port-forward service/argocd-server -n argocd 8080:443
+
+Open http://localhost:8080
+```
