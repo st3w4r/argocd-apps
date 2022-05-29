@@ -21,7 +21,7 @@ spec:
       source:
         repoURL: https://github.com/st3w4r/argocd-apps.git
         targetRevision: HEAD
-        path: '{{cluster}}/demo-four'
+        path: 'clusters/{{cluster}}/demo-four'
       destination:
         server: '{{url}}'
         namespace: demo

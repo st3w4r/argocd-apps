@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: demo
+  name: demo-two
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
-  
+
 spec:
   project: default
   source:
     repoURL: https://github.com/st3w4r/argocd-apps.git
     targetRevision: HEAD
-    path: demo
+    path: apps/demo-two
   destination:
     server: https://kubernetes.default.svc
     namespace: demo

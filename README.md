@@ -30,17 +30,17 @@ kubectl delete -f applications.yaml
 Create cluster
 
 ```
-cat prod_config.yaml
-| 
-| apiVersion: kind.x-k8s.io/v1alpha4
-| networking:
-|         apiServerAddress: 192.168.0.1
-|         apiServerPort: 8444
-| 
+$ cat prod_config.yaml
 
-kind create cluster --name prod --config prod_config.yaml
+apiVersion: kind.x-k8s.io/v1alpha4
+networking:
+        apiServerAddress: 192.168.0.1
+        apiServerPort: 8444
 
-argocd cluster add kind-prod
+
+$ kind create cluster --name prod --config prod_config.yaml
+
+$ argocd cluster add kind-prod
 ```
 
 
@@ -66,3 +66,55 @@ argocd cluster list
 ```
 
 
+
+# Objective
+
+- [ ] Multi cluster
+- [ ] Folder with base application
+- [ ] Deploy base app with custom configuration for each clsuter
+- [ ] Manage ArgoCD by itself
+- [ ] Automated test before env promotion
+
+
+# ArgoCD manage itself
+
+Based on: https://github.com/kurtburak/argocd
+
+
+- Helm Chart: https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+
+```
+$ kind create cluster --name argo
+
+Creating cluster "argo" ...
+ ✓ Ensuring node image (kindest/node:v1.21.1) 🖼
+ ✓ Preparing nodes 📦
+ ✓ Writing configuration 📜
+ ✓ Starting control-plane 🕹️
+ ✓ Installing CNI 🔌
+ ✓ Installing StorageClass 💾
+Set kubectl context to "kind-argo"
+You can now use your cluster with:
+
+kubectl cluster-info --context kind-argo
+
+Not sure what to do next? 😅  Check out https://kind.sigs.k8s.io/docs/user/quick-start/
+
+```
+
+Change cotnext
+```
+$ kubectl config use-context kind-argo
+
+Switched to context "kind-argo".
+
+$ kubectl cluster-info - contact kind-argo
+
+Kubernetes control plane is running at https://127.0.0.1:45119
+CoreDNS is running at https://127.0.0.1:45119/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+```
+
+
+Install helm chart
